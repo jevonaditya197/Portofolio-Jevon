@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portofolio Pribadi Jevon Aditya - Mahasiswa Informatika yang berdedikasi dan memiliki ketertarikan tinggi pada pengembangan teknologi informasi dan web development.">
+    <meta name="author" content="Jevon Aditya">
+    <title>Jevon Aditya | Portfolio Mahasiswa Informatika</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="loader-content">
+            <span class="loader-logo">JA</span>
+            <div class="loader-bar-container">
+                <div class="loader-bar"></div>
+            </div>
+            <span class="loader-text">Loading Experience...</span>
+        </div>
+    </div>
+
+    <!-- Background Particle Canvas -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Scroll Indicator Bar -->
+    <div class="scroll-progress-bar" id="scroll-progress"></div>
+
+    <!-- Floating Navigation Header -->
+    <header class="main-header" id="main-header">
+        <nav class="nav-container glass-card" id="nav-container">
+            <a href="#home" class="nav-logo" id="nav-logo-link">Jevon Portofolio<span>.</span></a>
+            
+            <!-- Desktop Navigation Links -->
+            <ul class="nav-links" id="nav-links-menu">
+                <li><a href="#home" class="nav-link active" id="link-home">Home</a></li>
+                <li><a href="#about" class="nav-link" id="link-about">Tentang</a></li>
+                <li><a href="#skills" class="nav-link" id="link-skills">Keahlian</a></li>
+                <li><a href="#projects" class="nav-link" id="link-projects">Proyek</a></li>
+                <li><a href="#certificates" class="nav-link" id="link-certificates">Sertifikat</a></li>
+                <li><a href="#contact" class="nav-link btn-contact-nav" id="link-contact">Kontak</a></li>
+            </ul>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button class="menu-toggle" id="menu-toggle-btn" aria-label="Toggle Menu">
+                <span class="bar bar-top"></span>
+                <span class="bar bar-mid"></span>
+                <span class="bar bar-bot"></span>
+            </button>
+        </nav>
+        
+        <!-- Mobile Dropdown Navigation -->
+        <div class="mobile-nav glass-card" id="mobile-nav-menu">
+            <ul class="mobile-links">
+                <li><a href="#home" class="mobile-link" id="mob-link-home">Home</a></li>
+                <li><a href="#about" class="mobile-link" id="mob-link-about">Tentang</a></li>
+                <li><a href="#skills" class="mobile-link" id="mob-link-skills">Keahlian</a></li>
+                <li><a href="#projects" class="mobile-link" id="mob-link-projects">Proyek</a></li>
+                <li><a href="#certificates" class="mobile-link" id="mob-link-certificates">Sertifikat</a></li>
+                <li><a href="#contact" class="mobile-link" id="mob-link-contact">Kontak</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container hero-container">
+                <div class="hero-content reveal reveal-left">
+                    <div class="hero-badge-container">
+                        <span class="hero-badge"><span class="badge-dot"></span> Fresh Graduate Informatics</span>
+                    </div>
+                    <h1 class="hero-title">Halo, Saya <span class="text-gradient">Jevon Kristo Aditya</span></h1>
+                    <h2 class="hero-subtitle">Fresh Graduate Informatics</h2>
+                    <p class="hero-description">
+                        Fresh Graduate S1 Informatika dari Universitas Teknologi Yogyakarta dengan pengalaman dalam
+                        pengembangan sistem informasi, jaringan komputer, organisasi, dan kepanitiaan. Menyelesaikan tugas
+                        akhir berupa Sistem Informasi Manajemen Kos berbasis Web dan Mobile melalui proses analisis,
+                        perancangan, pengembangan, dan pengujian. Memiliki pemahaman dasar jaringan komputer,
+                        troubleshooting, sistem informasi, basis data, dan Microsoft Office. Berpengalaman memimpin dan
+                        mengoordinasikan tim serta memiliki kemampuan adaptasi, komunikasi, teamwork, dan problem solving.
+
+.
+                    </p>
+                    <div class="hero-cta-buttons">
+                        <a href="#projects" class="btn btn-primary" id="btn-hero-projects">
+                            Lihat Portofolio
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-visual reveal reveal-right">
+                    <div class="profile-card-wrapper">
+                        <div class="profile-card-glow"></div>
+                        <div class="profile-card-container glass-card">
+                            <div class="profile-image-frame">
+                                <img src="assets/avatar.jpeg" alt="Jevon Aditya Profile Avatar" class="profile-image" id="profile-img">
+                            </div>
+                            <div class="profile-meta">
+                                <span class="profile-name">Jevon Kristo Aditya</span>
+                                <span class="profile-title">Fresh Graduate Informatics</span>
+                                <div class="profile-socials">
+                                    <a href="https://github.com/jevonaditya197" target="_blank" rel="noopener" aria-label="GitHub Profile" class="social-icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+                                    <a href="https://www.linkedin.com/in/jevon-aditya-216972391/" target="_blank" rel="noopener" aria-label="LinkedIn Profile" class="social-icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+                                    <a href="mailto:jevonaditya197@gmail.com" aria-label="Send Email" class="social-icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-down-indicator" id="scroll-down-btn">
+                <a href="#about" aria-label="Scroll Down">
+                    <span class="mouse-icon"><span class="mouse-wheel"></span></span>
+                    <span class="scroll-arrow"></span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Tentang Saya Section -->
+        <section id="about" class="about-section section-padding">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tagline">Tentang Saya</span>
+                    <h2 class="section-title">Kenali Saya <span class="text-gradient">Lebih Dekat</span></h2>
+                    <div class="section-underline"></div>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-bio-panel glass-card reveal reveal-left">
+                        <h3 class="about-sub-title">Perkenalan & Tujuan Karier</h3>
+                        <p class="about-text">
+                             Halo! Saya <strong>Jevon Kristo Aditya</strong>, Fresh Graduate Informatika yang memiliki minat untuk terus belajar dan berkembang di bidang teknologi informasi. Selama perkuliahan, saya telah mengerjakan berbagai tugas dan proyek akademik yang membantu saya memahami dasar-dasar pemrograman, pengembangan web, serta penggunaan teknologi untuk menyelesaikan permasalahan sederhana.
+                        </p>
+                        <p class="about-text">
+                            <strong>Tujuan Karier:</strong> Saya ingin mengembangkan karier di bidang teknologi dengan terus meningkatkan kemampuan teknis maupun non-teknis. Saat ini saya terbuka terhadap kesempatan magang maupun posisi entry-level yang dapat memberikan pengalaman profesional, memperluas wawasan, serta membantu saya bertumbuh menjadi seorang profesional di industri teknologi.
+                        <div class="personal-details-grid">
+                            <div class="detail-item">
+                                <span class="detail-label">Status Akademik</span>
+                                <span class="detail-val">Aktif - Universitas Teknologi Yogyakarta</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Lokasi</span>
+                                <span class="detail-val">Yogyakarta, Indonesia</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Fokus Minat</span>
+                                <span class="detail-val">Web Development & UI/UX Design</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-education-panel glass-card reveal reveal-right">
+                        <h3 class="about-sub-title">Riwayat Pendidikan</h3>
+                        <div class="education-timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <span class="timeline-year">2022 - Sekarang</span>
+                                    <h4 class="timeline-degree">S1 Teknik Informatika </h4>
+                                    <span class="timeline-school">Universitas Teknologi Yogyakarta | IPK 3.04</span>
+                                    <p class="timeline-desc">Mempelajari berbagai bidang dalam teknologi informasi, termasuk dasar-dasar pemrograman, algoritma, struktur data, basis data, rekayasa perangkat lunak, serta pengembangan aplikasi berbasis web melalui perkuliahan dan proyek akademik.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <span class="timeline-year">2020 - 2022</span>
+                                    <h4 class="timeline-degree">Sekolah Menengah Atas (IPS)</h4>
+                                    <span class="timeline-school">SMA Kristen Citra Bangsa Kupang | Nilai Akhir : 90.73</span>
+                                    <p class="timeline-desc"> Menyelesaikan pendidikan menengah dengan fokus pada ilmu sosial serta mengembangkan kemampuan analisis, komunikasi, dan kerja sama.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       <!-- Keahlian Section -->
+<section id="skills" class="skills-section section-padding">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tagline">Kemampuan & Kompetensi</span>
+            <h2 class="section-title">Keahlian & <span class="text-gradient">Kompetensi</span></h2>
+            <div class="section-underline"></div>
+        </div>
+
+        <div class="skills-grid">
+
+            <!-- Hard Skills -->
+            <div class="skills-category-card glass-card reveal">
+                <div class="category-icon-wrapper">
+                    <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16.5 9.4 7.55 4.24a1.79 1.79 0 0 0-2.5 1.54v12.44a1.79 1.79 0 0 0 2.5 1.54l8.95-5.17a1.79 1.79 0 0 0 0-3.09z"/>
+                        <path d="M19 5v14"/>
+                    </svg>
+                </div>
+
+                <h3 class="category-title">Hard Skills</h3>
+
+                <ul class="skills-list">
+
+                    <li class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">UI/UX Design (Figma)</span>
+                            <span class="skill-percentage">65%</span>
+                        </div>
+                        <div class="skill-track">
+                            <div class="skill-bar" style="width: 60%"></div>
+                        </div>
+                    </li>
+
+                    <li class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Wireframing & Prototyping</span>
+                            <span class="skill-percentage">50%</span>
+                        </div>
+                        <div class="skill-track">
+                            <div class="skill-bar" style="width: 55%"></div>
+                        </div>
+                    </li>
+
+                    <li class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">HTML & CSS</span>
+                            <span class="skill-percentage">60%</span>
+                        </div>
+                        <div class="skill-track">
+                            <div class="skill-bar" style="width: 60%"></div>
+                        </div>
+                    </li>
+
+                    <li class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Desain Grafis (Canva & Illustrator)</span>
+                            <span class="skill-percentage">75%</span>
+                        </div>
+                        <div class="skill-track">
+                            <div class="skill-bar" style="width: 70%"></div>
+                        </div>
+                    </li>
+
+                    <li class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Microsoft Excel</span>
+                            <span class="skill-percentage">60%</span>
+                        </div>
+                        <div class="skill-track">
+                            <div class="skill-bar" style="width: 75%"></div>
+                        </div>
+                    </li>
+
+                    <li class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Microsoft Word</span>
+                            <span class="skill-percentage">80%</span>
+                        </div>
+                        <div class="skill-track">
+                            <div class="skill-bar" style="width: 80%"></div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+            <!-- Soft Skills -->
+            <div class="skills-category-card glass-card reveal">
+                <div class="category-icon-wrapper">
+                    <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                </div>
+
+                <h3 class="category-title">Soft Skills</h3>
+
+                <div class="soft-skills-container">
+                    <div class="soft-skill-badge"><span class="badge-dot blue"></span> Kerja Sama Tim</div>
+                    <div class="soft-skill-badge"><span class="badge-dot purple"></span> Komunikasi Efektif</div>
+                    <div class="soft-skill-badge"><span class="badge-dot cyan"></span> Adaptabilitas</div>
+                    <div class="soft-skill-badge"><span class="badge-dot pink"></span> Manajemen Waktu</div>
+                    <div class="soft-skill-badge"><span class="badge-dot blue"></span> Ketelitian</div>
+                    <div class="soft-skill-badge"><span class="badge-dot purple"></span> Problem Solving</div>
+                    <div class="soft-skill-badge"><span class="badge-dot cyan"></span> Disiplin</div>
+                    <div class="soft-skill-badge"><span class="badge-dot pink"></span> Kemauan Belajar</div>
+                </div>
+            </div>
+
+            <!-- Software & Tools -->
+            <div class="skills-category-card glass-card reveal">
+                <div class="category-icon-wrapper">
+                    <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                    </svg>
+                </div>
+
+                <h3 class="category-title">Software & Tools</h3>
+
+                <div class="tools-grid">
+
+                    <div class="tool-card" title="Visual Studio Code">
+                        <span class="tool-icon code-color">&lt;/&gt;</span>
+                        <span class="tool-name">VS Code</span>
+                    </div>
+
+                    <div class="tool-card" title="Figma">
+                        <span class="tool-icon figma-color">Fg</span>
+                        <span class="tool-name">Figma</span>
+                    </div>
+
+                    <div class="tool-card" title="Canva">
+                        <span class="tool-icon canva-color">Cv</span>
+                        <span class="tool-name">Canva</span>
+                    </div>
+
+                    <div class="tool-card" title="Adobe Illustrator">
+                        <span class="tool-icon code-color">Ai</span>
+                        <span class="tool-name">Illustrator</span>
+                    </div>
+
+                    <div class="tool-card" title="Microsoft Word">
+                        <span class="tool-icon office-color">Wd</span>
+                        <span class="tool-name">Word</span>
+                    </div>
+
+                    <div class="tool-card" title="Microsoft Excel">
+                        <span class="tool-icon office-color">Ex</span>
+                        <span class="tool-name">Excel</span>
+                    </div>
+
+                    <div class="tool-card" title="Microsoft PowerPoint">
+                        <span class="tool-icon office-color">Pp</span>
+                        <span class="tool-name">PowerPoint</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="skills-description-card glass-card reveal">
+            <h3 class="skills-description-title"></h3>
+            <p class="skills-description-text">
+                Memiliki kemampuan bekerja sama dalam tim, berkomunikasi secara efektif, serta mampu beradaptasi dengan lingkungan dan tantangan baru. Terbiasa mengatur waktu, bekerja dengan teliti, dan memiliki semangat untuk terus belajar dan berkembang.
+            </p>
+        </div>
+    </div>
+</section>
+    <!-- Proyek Section -->
+<section id="projects" class="projects-section section-padding">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tagline">Portofolio Kerja</span>
+            <h2 class="section-title">Proyek <span class="text-gradient">Terpilih</span></h2>
+            <div class="section-underline"></div>
+        </div>
+
+        <div class="projects-grid">
+
+            <!-- Proyek 1 -->
+            <article class="project-card glass-card reveal">
+                <div class="project-image-wrapper">
+                    <img src="assets/project1.png" alt="Sistem Informasi Manajemen Kos" class="project-image">
+                    <div class="project-badge">Akademik</div>
+                </div>
+
+                <div class="project-info">
+                    <h3 class="project-title">Sistem Informasi Manajemen Kos</h3>
+
+                    <p class="project-desc">
+                        Aplikasi manajemen kos yang dikembangkan untuk membantu pengelolaan data penghuni, kamar, dan pembayaran. Proyek ini mengintegrasikan backend dan aplikasi mobile untuk mempermudah proses administrasi kos.
+                    </p>
+
+                    <div class="project-tech-tags">
+                        <span>Node.js</span>
+                        <span>Flutter</span>
+                        <span>Dart</span>
+                        <span>MySQL</span>
+                    </div>
+
+                    <div class="project-actions">
+                        <button class="btn btn-secondary btn-sm btn-project-detail">
+                            Detail Proyek
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Proyek 2 -->
+            <article class="project-card glass-card reveal">
+                <div class="project-image-wrapper">
+                    <img src="assets/project2 (2).png" alt="Website Portofolio Pribadi" class="project-image">
+                    <div class="project-badge">Web Design</div>
+                </div>
+
+                <div class="project-info">
+                    <h3 class="project-title">Website Portofolio Pribadi</h3>
+
+                    <p class="project-desc">
+                        Website portofolio pribadi yang dirancang untuk menampilkan profil, pendidikan, keterampilan, proyek, dan sertifikat dengan tampilan modern, responsif, dan user-friendly.
+                    </p>
+
+                    <div class="project-tech-tags">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                    <div class="project-actions">
+                        <button class="btn btn-secondary btn-sm btn-project-detail">
+                            Detail Proyek
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- Sertifikat Section -->
+<section id="certificates" class="certificates-section section-padding">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tagline">Pencapaian Akademik</span>
+            <h2 class="section-title">Sertifikat & <span class="text-gradient">Pelatihan</span></h2>
+            <div class="section-underline"></div>
+        </div>
+
+        <div class="certificates-grid">
+
+            <!-- Sertifikat 1 -->
+            <div class="certificate-card glass-card reveal">
+                <div class="certificate-image-container">
+                    <img src="assets/SERTIF_MACHINE_LEARNING.png" alt="Sertifikat Machine Learning" class="cert-thumbnail">
+                </div>
+
+                <div class="certificate-info">
+                    <h3 class="cert-title">Machine Learning</h3>
+                    <p class="cert-issuer">Pelatihan Machine Learning</p>
+                    <span class="cert-date">2023</span>
+                </div>
+            </div>
+
+            <!-- Sertifikat 2 -->
+            <div class="certificate-card glass-card reveal">
+                <div class="certificate-image-container">
+                    <img src="assets/SERTIF_KUNJUNGAN_INDUSTRI.jpeg" alt="Sertifikat Kunjungan Industri" class="cert-thumbnail">
+                </div>
+
+                <div class="certificate-info">
+                    <h3 class="cert-title">Kunjungan Industri</h3>
+                    <p class="cert-issuer">Universitas Teknologi Yogyakarta</p>
+                    <span class="cert-date">2025</span>
+                </div>
+            </div>
+
+            <!-- Sertifikat 3 -->
+            <div class="certificate-card glass-card reveal">
+                <div class="certificate-image-container">
+                    <img src="assets/SERTIF_BEDAH_CV.png" alt="Sertifikat Webinar Bedah CV dan LinkedIn" class="cert-thumbnail">
+                </div>
+
+                <div class="certificate-info">
+                    <h3 class="cert-title">Webinar Bedah CV & LinkedIn</h3>
+                    <p class="cert-issuer">Seminar Pengembangan Karier</p>
+                    <span class="cert-date">2024</span>
+                </div>
+            </div>
+
+            <!-- Sertifikat 4 -->
+            <div class="certificate-card glass-card reveal">
+                <div class="certificate-image-container">
+                    <img src="assets/PANITIA.png" alt="Sertifikat Panitia Ketua Acara Organisasi Daerah" class="cert-thumbnail">
+                </div>
+
+                <div class="certificate-info">
+                    <h3 class="cert-title">Ketua Acara Organisasi Daerah</h3>
+                    <p class="cert-issuer">Persaudaraan Kupang Raya Yogyakarta</p>
+                    <span class="cert-date">2024</span>
+                </div>
+            </div>
+
+            <!-- Sertifikat 5 -->
+            <div class="certificate-card glass-card reveal">
+                <div class="certificate-image-container">
+                    <img src="assets/frontend.png" alt="Sertifikat Hacker Rank Frontend Developer" class="cert-thumbnail">
+                </div>
+
+                <div class="certificate-info">
+                    <h3 class="cert-title">Frontend Developer</h3>
+                    <p class="cert-issuer">Hacker Rank</p>
+                    <span class="cert-date">2026</span>
+                </div>
+            </div>
+
+            <!-- Sertifikat 6 -->
+            <div class="certificate-card glass-card reveal">
+                <div class="certificate-image-container">
+                    <img src="assets/problem_solvinf.png" alt="Sertifikat Hacker Rank Problem Solving" class="cert-thumbnail">
+                </div>
+
+                <div class="certificate-info">
+                    <h3 class="cert-title">Problem Solving</h3>
+                    <p class="cert-issuer">Hacker Rank</p>
+                    <span class="cert-date">2026</span>
+                </div>
+            </div>
+
+            <!-- Sertifikat 7 -->
+            <div class="certificate-card glass-card reveal">
+                <div class="certificate-image-container">
+                    <img src="assets/python.png" alt="Sertifikat Hacker Rank Python (Basic)" class="cert-thumbnail">
+                </div>
+
+                <div class="certificate-info">
+                    <h3 class="cert-title">Python (Basic)</h3>
+                    <p class="cert-issuer">Hacker Rank</p>
+                    <span class="cert-date">2026</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="certificates-description glass-card reveal">
+            <p>
+                Saya aktif mengikuti pelatihan, webinar, dan kegiatan akademik untuk memperluas wawasan di bidang teknologi informasi, pengembangan karier, dan kebutuhan industri yang terus berkembang.
+            </p>
+        </div>
+    </div>
+</section>
+        <section id="contact" class="contact-section section-padding">
+            <div class="container">
+                <div class="contact-grid">
+                    <!-- Contact Information -->
+                    <div class="contact-info-panel glass-card reveal reveal-left" id="contact-info-panel">
+                        <h3 class="contact-panel-title">Hubungi Secara Langsung</h3>
+                        <p class="contact-panel-desc">Silakan hubungi saya untuk kolaborasi proyek akademik, magang, atau sekadar bertanya dan bertukar pikiran.</p>
+                        
+                        <div class="contact-details-list">
+                            <div class="contact-detail-item">
+                                <div class="detail-icon-box">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+                                </div>
+                                <div class="detail-text-box">
+                                    <span class="detail-title">Email</span>
+                                    <a href="mailto:jevonaditya197@gmail.com" class="detail-link" id="email-contact-link">jevonaditya197@gmail.com</a>
+                                </div>
+                            </div>
+
+                            <div class="contact-detail-item">
+                                <div class="detail-icon-box">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                </div>
+                                <div class="detail-text-box">
+                                    <span class="detail-title">WhatsApp / HP</span>
+                                    <a href="https://wa.me/6285173432505" target="_blank" rel="noopener" class="detail-link" id="phone-contact-link">+62 851-7343-2505</a>
+                                </div>
+                            </div>
+
+                            <div class="contact-detail-item">
+                                <div class="detail-icon-box">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+                                </div>
+                                <div class="detail-text-box">
+                                    <span class="detail-title">LinkedIn</span>
+                                    <a href="https://www.linkedin.com/in/jevon-aditya-216972391/" target="_blank" rel="noopener" class="detail-link" id="linkedin-contact-link">linkedin.com/in/jevonaditya</a>
+                                </div>
+                            </div>
+
+                            <div class="contact-detail-item">
+                                <div class="detail-icon-box">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                </div>
+                                <div class="detail-text-box">
+                                    <span class="detail-title">GitHub</span>
+                                    <a href="https://github.com/jevonaditya197" target="_blank" rel="noopener" class="detail-link" id="github-contact-link">github.com/jevonaditya197</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-detail-item">
+                            <div class="detail-icon-box">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                                </svg>
+                            </div>
+
+                            <div class="detail-text-box">
+                                <span class="detail-title">Instagram</span>
+                                <a href="https://instagram.com/jvnadtya_"
+                                target="_blank"
+                                rel="noopener"
+                                class="detail-link"
+                                id="instagram-contact-link">
+                                    @jvnadtya_
+                                </a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="contact-form-panel glass-card reveal reveal-right" id="contact-form-panel">
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-group">
+                                <label for="form-name">Nama Lengkap</label>
+                                <input type="text" id="form-name" name="name" placeholder="Nama Anda" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="form-email">Email</label>
+                                <input type="email" id="form-email" name="email" placeholder="email@contoh.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-subject">Subjek</label>
+                                <input type="text" id="form-subject" name="subject" placeholder="Topik pembicaraan" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-message">Pesan Anda</label>
+                                <textarea id="form-message" name="message" rows="5" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block" id="btn-submit-contact">
+                                Kirim Pesan
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="#home" class="footer-logo" id="footer-logo-link">Jevon Portofolio<span>.</span></a>
+                <p></p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">Tentang</a></li>
+                    <li><a href="#skills">Keahlian</a></li>
+                    <li><a href="#projects">Proyek</a></li>
+                    <li><a href="#certificates">Sertifikat</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Jevon Aditya. All Rights Reserved.</p>
+                <p class="footer-credit">Portofolio Website</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top-btn" aria-label="Back to Top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+    </button>
+
+    <!-- Certificate Lightbox Modal -->
+    <div id="lightbox-modal" class="lightbox-modal" aria-hidden="true">
+        <button class="lightbox-close" id="lightbox-close-btn" aria-label="Close Lightbox">&times;</button>
+        <div class="lightbox-content-wrapper">
+            <img src="" alt="" class="lightbox-img" id="lightbox-main-img">
+            <div class="lightbox-caption" id="lightbox-caption-text">Caption</div>
+        </div>
+    </div>
+
+    <!-- Project Detail Modal -->
+    <div id="project-modal" class="project-modal" aria-hidden="true">
+        <div class="project-modal-card glass-card">
+            <button class="project-modal-close" id="project-modal-close-btn" aria-label="Close Modal">&times;</button>
+            <div class="project-modal-content">
+                <div class="project-modal-image-wrapper">
+                    <img src="" alt="" class="project-modal-img" id="project-modal-main-img">
+                </div>
+                <div class="project-modal-info">
+                    <span class="project-modal-tag" id="project-modal-tag">Kategori</span>
+                    <h3 class="project-modal-title" id="project-modal-title">Nama Proyek</h3>
+                    <p class="project-modal-desc" id="project-modal-desc">Deskripsi lengkap proyek.</p>
+                    <div class="project-modal-meta">
+                        <h4>Teknologi Utama:</h4>
+                        <div class="project-tech-tags" id="project-modal-tech">
+                            <!-- Tags -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Main JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>
