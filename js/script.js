@@ -353,101 +353,304 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
-       6. PROJECT DETAIL MODAL (DINAMIS)
+       6. PROJECT DETAIL MODAL — CAROUSEL / SLIDESHOW
        ========================================================================== */
-    const projectDetailButtons = document.querySelectorAll('.btn-project-detail');
-    const projectModal = document.getElementById('project-modal');
+    const projectModal      = document.getElementById('project-modal');
     const projectModalClose = document.getElementById('project-modal-close-btn');
-    const projectModalImg = document.getElementById('project-modal-main-img');
-    const projectModalTag = document.getElementById('project-modal-tag');
+    const projectModalTag   = document.getElementById('project-modal-tag');
     const projectModalTitle = document.getElementById('project-modal-title');
-    const projectModalDesc = document.getElementById('project-modal-desc');
-    const projectModalTech = document.getElementById('project-modal-tech');
+    const projectModalDesc  = document.getElementById('project-modal-desc');
+    const projectModalTech  = document.getElementById('project-modal-tech');
+    const carouselTrack     = document.getElementById('carousel-track');
+    const carouselDots      = document.getElementById('carousel-dots');
+    const carouselThumbs    = document.getElementById('carousel-thumbs');
+    const carouselPrev      = document.getElementById('carousel-prev');
+    const carouselNext      = document.getElementById('carousel-next');
+    const carouselCounter   = document.getElementById('carousel-counter');
+    const carouselCaption   = document.getElementById('carousel-caption-badge');
 
-    // Data Proyek Terperinci
-    const projectData = {
-        sia: {
-            title: "Sistem Informasi Akademik (SIA)",
-            tag: "Akademik",
-            image: "assets/project1.png",
-            desc: "Sistem Informasi Akademik ini dirancang khusus untuk mengotomatisasi proses bisnis di institusi pendidikan. Memiliki fitur manajemen data mahasiswa, input nilai oleh dosen, kartu hasil studi (KHS), penjadwalan kelas, serta rekapitulasi data laporan untuk administrator. Dikembangkan dengan memisahkan level otorisasi pengguna secara aman menggunakan autentikasi terenkripsi.",
-            tech: ["HTML5", "CSS3", "JavaScript", "PHP", "MySQL", "Admin Dashboard"]
-        },
-        db: {
-            title: "Perancangan Basis Data Toko Online",
-            tag: "Basis Data",
-            image: "assets/project2.png",
-            desc: "Proyek ini mencakup analisis kebutuhan data bisnis, pembuatan skema konseptual menggunakan ERD (Entity Relationship Diagram) di MySQL Workbench, normalisasi tabel hingga tingkat 3NF untuk menghindari anomali data, dan implementasi kueri SQL transaksional yang kompleks. Berhasil mengoptimalkan kecepatan respons data pencarian produk dengan indexing taktis.",
-            tech: ["MySQL Workbench", "Database Normalization", "ERD Modeling", "Indexing & Optimization"]
-        },
-        portfolio: {
-            title: "Website Portofolio Pribadi Premium",
-            tag: "Web Design",
-            image: "assets/project3.png",
-            desc: "Pengembangan website portofolio pribadi modern berestetika premium untuk Jevon Aditya. Menampilkan animasi partikel interaktif menggunakan HTML5 Canvas, tata letak glassmorphism responsif murni dengan CSS Grid & Flexbox, serta transisi scroll dinamis yang halus tanpa library eksternal. Dioptimalkan untuk performa Google Lighthouse yang cepat.",
-            tech: ["HTML5 Semantics", "CSS Custom Variables", "Vanilla JavaScript", "HTML5 Canvas", "Responsive Web Design"]
-        },
-        group: {
-            title: "Kolaborasi Aplikasi Pemesanan Tiket",
-            tag: "Kolaborasi",
-            image: "assets/project4.png",
-            desc: "Proyek pengembangan kelompok berskala perkuliahan untuk mensimulasikan lingkungan kerja industri. Fokus utama pada pembagian tugas terstruktur menggunakan Git branching, pengajuan Pull Request, kode review, dan resolusi konflik merge. Menerapkan metodologi Agile Scrum sederhana untuk mengontrol siklus pembuatan purwarupa aplikasi tiket.",
-            tech: ["Git & GitHub", "Agile Scrum Method", "Wireframing & Figma", "Teamwork Coordination"]
+    let currentSlide  = 0;
+    let totalSlides   = 0;
+    let currentLabels = [];
+    let touchStartX   = 0;
+    let touchEndX     = 0;
+
+    // ---------- helpers ----------
+    function goToSlide(idx) {
+        if (totalSlides === 0) return;
+        currentSlide = (idx + totalSlides) % totalSlides;
+
+        // Geser track
+        carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+        // Update dots
+        document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentSlide);
+        });
+
+        // Update thumbnails
+        document.querySelectorAll('.carousel-thumb').forEach((th, i) => {
+            const isActive = i === currentSlide;
+            th.classList.toggle('active', isActive);
+            if (isActive) {
+                th.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        });
+
+        // Counter murni angka (contoh: 1 / 5)
+        if (carouselCounter) {
+            carouselCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
         }
-    };
 
-    if (projectDetailButtons && projectModal && projectModalClose) {
-        projectDetailButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const projectId = btn.getAttribute('data-project');
-                const data = projectData[projectId];
+        // Caption badge fitur / role (Admin Web vs Penyewa Mobile)
+        if (carouselCaption) {
+            const currentLabel = (currentLabels && currentLabels[currentSlide]) ? currentLabels[currentSlide] : '';
+            if (currentLabel.includes('Admin (Web)')) {
+                const cleanText = currentLabel.replace(/Admin\s*\(Web\)\s*[-:]?\s*/i, '').trim();
+                carouselCaption.innerHTML = `<span class="badge-role-tag badge-admin">Admin (Web)</span> <span>${cleanText}</span>`;
+            } else if (currentLabel.includes('Penyewa (Mobile)')) {
+                const cleanText = currentLabel.replace(/Penyewa\s*\(Mobile\)\s*[-:]?\s*/i, '').trim();
+                carouselCaption.innerHTML = `<span class="badge-role-tag badge-mobile">Penyewa (Mobile)</span> <span>${cleanText}</span>`;
+            } else {
+                carouselCaption.textContent = currentLabel;
+            }
+            carouselCaption.style.display = currentLabel ? 'inline-flex' : 'none';
+        }
 
-                if (data) {
-                    // Isi data modal
-                    projectModalImg.src = data.image;
-                    projectModalImg.alt = data.title;
-                    projectModalTag.textContent = data.tag;
-                    projectModalTitle.textContent = data.title;
-                    projectModalDesc.textContent = data.desc;
+        // Sembunyikan prev/next jika hanya 1 gambar
+        const showNav = totalSlides > 1;
+        if (carouselPrev) carouselPrev.style.display = showNav ? '' : 'none';
+        if (carouselNext) carouselNext.style.display = showNav ? '' : 'none';
+        if (carouselCounter) carouselCounter.style.display = showNav ? '' : 'none';
+    }
+1
+    function buildCarousel(images, altText = 'Foto Fitur', labels = []) {
+        if (!carouselTrack || !carouselDots || !carouselThumbs) return;
 
-                    // Buat tech tags
-                    projectModalTech.innerHTML = '';
-                    data.tech.forEach(techName => {
-                        const tagSpan = document.createElement('span');
-                        tagSpan.textContent = techName;
-                        projectModalTech.appendChild(tagSpan);
-                    });
+        currentSlide  = 0;
+        totalSlides   = images.length;
+        currentLabels = Array.isArray(labels) ? labels : [];
 
-                    // Buka modal
-                    projectModal.classList.add('active');
-                    projectModal.setAttribute('aria-hidden', 'false');
-                    document.body.style.overflow = 'hidden'; // Kunci scroll halaman
+        // --- Track slides (murni foto, tanpa overlay teks) ---
+        carouselTrack.innerHTML = '';
+        carouselTrack.style.transform = 'translateX(0)';
+        images.forEach((src, i) => {
+            const slide = document.createElement('div');
+            slide.className = 'carousel-slide';
+
+            const img = document.createElement('img');
+            img.src = src;
+            const lbl = (currentLabels && currentLabels[i]) ? currentLabels[i] : `${altText} — foto ${i + 1}`;
+            img.alt = lbl;
+            img.loading = i === 0 ? 'eager' : 'lazy';
+
+            // Cek apakah gambar merupakan tampilan single mobile (portrait)
+            const isPortraitMobile = ((lbl && lbl.includes('Mobile')) || src.includes('mobile')) && !src.includes('pembayaran');
+            if (isPortraitMobile) {
+                img.classList.add('is-mobile-frame');
+            }
+
+            img.addEventListener('load', () => {
+                if (img.naturalHeight > img.naturalWidth * 1.1) {
+                    img.classList.add('is-mobile-frame');
+                } else if (img.naturalWidth > img.naturalHeight * 1.2) {
+                    img.classList.remove('is-mobile-frame');
                 }
+            });
+
+            slide.appendChild(img);
+            carouselTrack.appendChild(slide);
+        });
+
+        // --- Dots ---
+        carouselDots.innerHTML = '';
+        images.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', `Foto ${i + 1}`);
+            dot.title = (currentLabels && currentLabels[i]) ? currentLabels[i] : `Foto ${i + 1}`;
+            dot.addEventListener('click', () => goToSlide(i));
+            carouselDots.appendChild(dot);
+        });
+
+        // --- Thumbnails (murni foto fitur) ---
+        carouselThumbs.innerHTML = '';
+        if (images.length > 1) {
+            images.forEach((src, i) => {
+                const th = document.createElement('img');
+                th.src = src;
+                const lbl = (currentLabels && currentLabels[i]) ? currentLabels[i] : `Thumbnail ${i + 1}`;
+                th.alt = lbl;
+                th.title = lbl;
+                th.className = 'carousel-thumb' + (i === 0 ? ' active' : '');
+                
+                // Border halus pembeda role pada thumbnail
+                if (lbl.includes('Mobile') || src.includes('mobile')) {
+                    th.style.borderColor = 'rgba(16, 185, 129, 0.45)';
+                } else if (lbl.includes('Admin') || src.includes('admin')) {
+                    th.style.borderColor = 'rgba(59, 130, 246, 0.45)';
+                }
+
+                th.loading = 'lazy';
+                th.addEventListener('click', () => goToSlide(i));
+                carouselThumbs.appendChild(th);
+            });
+        }
+
+        goToSlide(0);
+    }
+
+    // ---------- open modal from any project card ----------
+    const projectCards = document.querySelectorAll('.project-card');
+
+    function openProjectModal(card) {
+        // Baca data dari attributes HTML card
+        const images  = JSON.parse(card.dataset.images  || '[]');
+        const labels  = JSON.parse(card.dataset.labels  || '[]');
+        const tag     = card.dataset.tag   || '';
+        const title   = card.dataset.title || '';
+        const desc    = card.dataset.desc  || '';
+        const tech    = JSON.parse(card.dataset.tech || '[]');
+
+        // Fallback: jika tidak ada data-images, ambil gambar dari card
+        if (images.length === 0) {
+            const cardImg = card.querySelector('.project-image');
+            if (cardImg) images.push(cardImg.src);
+        }
+
+        // Isi info panel
+        if (projectModalTag)   projectModalTag.textContent   = tag;
+        if (projectModalTitle) projectModalTitle.textContent = title;
+        if (projectModalDesc)  projectModalDesc.textContent  = desc;
+
+        if (projectModalTech) {
+            projectModalTech.innerHTML = '';
+            tech.forEach(t => {
+                const span = document.createElement('span');
+                span.textContent = t;
+                projectModalTech.appendChild(span);
+            });
+        }
+
+        // Setup Role Filter Tabs (Admin Web vs Penyewa Mobile)
+        const roleFilterBar  = document.getElementById('carousel-role-filter');
+        const filterAllBtn   = document.getElementById('filter-all-btn');
+        const filterAdminBtn = document.getElementById('filter-admin-btn');
+        const filterMobileBtn= document.getElementById('filter-mobile-btn');
+        const countAll       = document.getElementById('count-all');
+        const countAdmin     = document.getElementById('count-admin');
+        const countMobile    = document.getElementById('count-mobile');
+
+        const adminIndices = [];
+        const mobileIndices = [];
+
+        labels.forEach((lbl, idx) => {
+            const isMob = (lbl && lbl.includes('Mobile')) || (images[idx] && images[idx].includes('mobile'));
+            if (isMob) {
+                mobileIndices.push(idx);
+            } else {
+                adminIndices.push(idx);
+            }
+        });
+
+        if (roleFilterBar && adminIndices.length > 0 && mobileIndices.length > 0) {
+            roleFilterBar.style.display = 'flex';
+            if (countAll)    countAll.textContent    = images.length;
+            if (countAdmin)  countAdmin.textContent  = adminIndices.length;
+            if (countMobile) countMobile.textContent = mobileIndices.length;
+
+            // Reset tab aktif ke 'Semua Foto'
+            roleFilterBar.querySelectorAll('.role-filter-btn').forEach(b => b.classList.remove('active'));
+            if (filterAllBtn) filterAllBtn.classList.add('active');
+
+            const applyFilter = (filterType, activeBtn) => {
+                roleFilterBar.querySelectorAll('.role-filter-btn').forEach(b => b.classList.remove('active'));
+                activeBtn.classList.add('active');
+
+                let filteredImages = [];
+                let filteredLabels = [];
+
+                if (filterType === 'admin') {
+                    filteredImages = adminIndices.map(i => images[i]);
+                    filteredLabels = adminIndices.map(i => labels[i]);
+                } else if (filterType === 'mobile') {
+                    filteredImages = mobileIndices.map(i => images[i]);
+                    filteredLabels = mobileIndices.map(i => labels[i]);
+                } else {
+                    filteredImages = images;
+                    filteredLabels = labels;
+                }
+
+                buildCarousel(filteredImages, title, filteredLabels);
+            };
+
+            if (filterAllBtn)    filterAllBtn.onclick    = () => applyFilter('all', filterAllBtn);
+            if (filterAdminBtn)  filterAdminBtn.onclick  = () => applyFilter('admin', filterAdminBtn);
+            if (filterMobileBtn) filterMobileBtn.onclick = () => applyFilter('mobile', filterMobileBtn);
+        } else if (roleFilterBar) {
+            roleFilterBar.style.display = 'none';
+        }
+
+        // Bangun carousel awal dengan semua foto
+        buildCarousel(images, title, labels);
+
+        // Buka modal dengan animasi zoom-in
+        projectModal.classList.add('active');
+        projectModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    if (projectModal && projectModalClose) {
+        // Buka dari tombol "Detail Proyek"
+        document.querySelectorAll('.btn-project-detail').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const card = btn.closest('.project-card');
+                if (card) openProjectModal(card);
             });
         });
 
+        // Buka dari klik thumbnail gambar project card
+        projectCards.forEach(card => {
+            const imgWrapper = card.querySelector('.project-image-wrapper');
+            if (imgWrapper) {
+                imgWrapper.addEventListener('click', () => openProjectModal(card));
+                imgWrapper.style.cursor = 'pointer';
+            }
+        });
+
+        // Prev / Next buttons
+        if (carouselPrev) carouselPrev.addEventListener('click', () => goToSlide(currentSlide - 1));
+        if (carouselNext) carouselNext.addEventListener('click', () => goToSlide(currentSlide + 1));
+
+        // Touch / Swipe support
+        if (carouselTrack) {
+            carouselTrack.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+            carouselTrack.addEventListener('touchend',   e => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 40) goToSlide(currentSlide + (diff > 0 ? 1 : -1));
+            }, { passive: true });
+        }
+
+        // Close modal
         const closeProjectModal = () => {
             projectModal.classList.remove('active');
             projectModal.setAttribute('aria-hidden', 'true');
-            document.body.style.overflow = ''; // Aktifkan kembali scroll
+            document.body.style.overflow = '';
         };
 
         projectModalClose.addEventListener('click', closeProjectModal);
-        
-        // Tutup jika mengklik latar belakang hitam di luar kartu modal
-        projectModal.addEventListener('click', (e) => {
-            if (e.target === projectModal) {
-                closeProjectModal();
-            }
-        });
+        projectModal.addEventListener('click', (e) => { if (e.target === projectModal) closeProjectModal(); });
 
-        // Tutup dengan tombol Escape
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && projectModal.classList.contains('active')) {
-                closeProjectModal();
-            }
+            if (!projectModal.classList.contains('active')) return;
+            if (e.key === 'Escape')      closeProjectModal();
+            if (e.key === 'ArrowLeft')   goToSlide(currentSlide - 1);
+            if (e.key === 'ArrowRight')  goToSlide(currentSlide + 1);
         });
     }
+
 
     /* ==========================================================================
        7. CONTACT FORM SUBMISSION & NOTIFICATION TOAST
